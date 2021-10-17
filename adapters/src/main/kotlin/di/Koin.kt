@@ -1,11 +1,16 @@
 package di
 
-import org.koin.core.module.Module
+import io.ktor.application.*
 import org.koin.dsl.module
+import org.koin.ktor.ext.Koin
 
-fun modules(): List<Module> = listOf()
+fun Application.configureKoin() {
+    install(Koin) {
+        modules(iconModules())
+    }
+}
 
 @Suppress("USELESS_CAST")
-private fun iconModule() = module {
+private fun iconModules() = module {
 
 }
