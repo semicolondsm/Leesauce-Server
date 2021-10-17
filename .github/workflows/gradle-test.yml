@@ -1,4 +1,4 @@
-name: Gradle Test (with Ubunutu latest)
+name: Gradle Test (with Ubuntu)
 
 on:
   push:
