@@ -1,4 +1,4 @@
-package com.semicolonDSM.configuration
+package config
 
 import io.ktor.features.*
 import io.ktor.http.content.*

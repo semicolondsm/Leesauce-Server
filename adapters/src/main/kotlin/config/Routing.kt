@@ -1,4 +1,4 @@
-package com.semicolonDSM.configuration
+package config
 
 import io.ktor.routing.*
 import io.ktor.application.*
@@ -12,7 +12,7 @@ fun Application.configureRouting() {
     }
 
     routing {
-        get("/") {
+        get("/resource") {
             call.respondText("Hello World!")
         }
     }
