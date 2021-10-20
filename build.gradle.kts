@@ -1,11 +1,13 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 val ktorVersion: String by project
 val kotlinVersion: String by project
 val logbackVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.5.31"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.5.31"
+    kotlin("jvm") version "1.6.0-RC"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.6.0-RC"
 }
 
 application {
@@ -17,6 +19,10 @@ allprojects {
 
     group = "com.semicolonDSM"
     version = "0.0.1"
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_16.toString()
+    }
 
     repositories {
         mavenCentral()
