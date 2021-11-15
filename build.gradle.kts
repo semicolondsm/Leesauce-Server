@@ -42,3 +42,9 @@ allprojects {
         testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
     }
 }
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "server.ServerKt.main"
+    }
+}
