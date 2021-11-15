@@ -98,7 +98,7 @@ fun Application.configureRouting() {
             call.respond(deleteLogoUsecase(DeleteLogoRequest(name), password))
         }
 
-        delete("/source") {
+        delete("/source/{name}") {
             val password = getAuthorizationHeader(call.request)
             val name = call.parameters["name"] ?: throw NameIsNeededException()
 

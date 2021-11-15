@@ -25,14 +25,14 @@ class UploadLogoUsecase (
             throw LogoAlreadyExistsException()
 
         val ext = File(file.originalFileName!!).extension
-        val pathName = "$uploadDir/$logoName.$ext"
+        val pathName = "$uploadDir/logo/$logoName.$ext"
 
         writeFile(file, pathName)
 
         repository.create(
             Resource(
                 name = logoName,
-                url = "${environment.baseUrl}/$logoName.$ext",
+                url = "${environment.baseUrl}/logo/$logoName.$ext",
                 type = ResourceType.LOGO
             )
         )

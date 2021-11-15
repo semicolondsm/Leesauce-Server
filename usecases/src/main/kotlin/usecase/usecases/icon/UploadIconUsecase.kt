@@ -25,14 +25,14 @@ class UploadIconUsecase (
             throw IconAlreadyExistsException()
 
         val ext = File(file.originalFileName!!).extension
-        val pathName = "$uploadDir/$iconName.$ext"
+        val pathName = "$uploadDir/icon/$iconName.$ext"
 
         writeFile(file, pathName)
 
         repository.create(
             Resource(
                 name = iconName,
-                url = "${environment.baseUrl}/$iconName.$ext",
+                url = "${environment.baseUrl}/icon/$iconName.$ext",
                 type = ResourceType.ICON
             )
         )

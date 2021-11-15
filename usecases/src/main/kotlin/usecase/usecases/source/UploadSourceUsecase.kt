@@ -25,14 +25,14 @@ class UploadSourceUsecase (
             throw SourceAlreadyExistsException()
 
         val ext = File(file.originalFileName!!).extension
-        val pathName = "$uploadDir/$sourceName.$ext"
+        val pathName = "$uploadDir/source/$sourceName.$ext"
 
         writeFile(file, pathName)
 
         repository.create(
             Resource(
                 name = sourceName,
-                url = "${environment.baseUrl}/$sourceName.$ext",
+                url = "${environment.baseUrl}/source/$sourceName.$ext",
                 type = ResourceType.SOUR
             )
         )
