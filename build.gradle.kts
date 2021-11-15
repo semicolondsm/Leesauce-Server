@@ -12,7 +12,7 @@ plugins {
 }
 
 application {
-    mainClass.set("server.ServerKt.module")
+    mainClass.set("server.ServerKt.main")
 }
 
 allprojects {

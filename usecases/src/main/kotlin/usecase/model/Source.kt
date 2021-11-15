@@ -2,20 +2,20 @@ package usecase.model
 
 import io.ktor.http.content.*
 
-class UploadIconRequest (
-    val iconName: String,
+class UploadSourceRequest (
+    val sourceName: String,
     val file: PartData.FileItem
 )
 
-class GetIconListResponse (
-    val sources: List<Icon>
+class GetSourceListResponse (
+    val sources: List<Source>
 ) {
-    class Icon (
+    class Source (
         val name: String,
         val url: String
     )
 }
 
-class DeleteIconRequest (
+class DeleteSourceRequest (
     val name: String
 )
