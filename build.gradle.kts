@@ -8,7 +8,7 @@ val logbackVersion: String by project
 plugins {
     application
     kotlin("jvm") version "1.6.0-RC"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.6.0-RC"
+    id("com.github.johnrengelman.shadow") version "6.0.0"
 }
 
 application {
@@ -43,8 +43,12 @@ allprojects {
     }
 }
 
-tasks.withType<Jar> {
-    manifest {
-        attributes["Main-Class"] = "server.ServerKt.main"
+project.setProperty("mainClassName", "server.ServerKt")
+
+tasks {
+    shadowJar {
+        manifest {
+            attributes(Pair("Main-Class", "server.ServerKt"))
+        }
     }
 }
