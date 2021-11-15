@@ -8,11 +8,17 @@ val logbackVersion: String by project
 plugins {
     application
     kotlin("jvm") version "1.6.0-RC"
-    id("com.github.johnrengelman.shadow") version "6.0.0"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
+}
+
+project.setProperty("mainClassName", "server.ServerKt")
+
+dependencies {
+    implementation(project(":adapters"))
 }
 
 application {
-    mainClass.set("server.ServerKt.main")
+    mainClass.set("server.ServerKt")
 }
 
 allprojects {
@@ -40,15 +46,5 @@ allprojects {
         implementation("ch.qos.logback:logback-classic:$logbackVersion")
         testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
         testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
-    }
-}
-
-project.setProperty("mainClassName", "server.ServerKt.main")
-
-tasks {
-    shadowJar {
-        manifest {
-            attributes(Pair("Main-Class", "server.ServerKt.main"))
-        }
     }
 }
