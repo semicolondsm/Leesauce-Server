@@ -8,7 +8,7 @@ class UploadIconRequest (
 )
 
 class GetIconListResponse (
-    val sources: List<Icon>
+    val icons: List<Icon>
 ) {
     class Icon (
         val name: String,
