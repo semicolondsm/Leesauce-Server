@@ -43,12 +43,12 @@ allprojects {
     }
 }
 
-project.setProperty("mainClassName", "server.ServerKt")
+project.setProperty("mainClassName", "server.ServerKt.main")
 
 tasks {
     shadowJar {
         manifest {
-            attributes(Pair("Main-Class", "server.ServerKt"))
+            attributes(Pair("Main-Class", "server.ServerKt.main"))
         }
     }
 }
