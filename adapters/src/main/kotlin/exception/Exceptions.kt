@@ -1,6 +1,6 @@
 package exception
 
-open class ValidationException(message: String) : Exception(message)
+open class ValidationException(override val message: String) : Exception(message)
 
 // Handler exceptions
 class PasswordNeedException : ValidationException("this api requires password to use.")

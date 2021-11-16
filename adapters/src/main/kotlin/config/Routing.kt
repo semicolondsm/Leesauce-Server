@@ -115,11 +115,11 @@ suspend inline fun getNameAndIconFromFile(call: ApplicationCall): Pair<String, P
     val multiMap = call.receiveMultipart().readAllParts()
         .associateBy { it.name }.toMap()
 
-    val name: PartData.FormItem? by multiMap
-    val file: PartData.FileItem? by multiMap
+    val name: PartData = multiMap["name"] ?: throw FileNameIsNeededException()
+    val file: PartData = multiMap["file"] ?: throw FileNotFoundException()
 
-    val nameItem = name?.value ?: throw FileNameIsNeededException()
-    val fileItem = file ?: throw FileNotFoundException()
+    val nameItem = (name as PartData.FormItem).value
+    val fileItem = file as PartData.FileItem
 
     return nameItem to fileItem
 }
