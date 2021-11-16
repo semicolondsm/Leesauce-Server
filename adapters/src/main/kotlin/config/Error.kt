@@ -13,7 +13,7 @@ class Error (
 
 fun Application.configureError() {
     install(StatusPages) {
-        exception<Throwable> { cause ->
+        exception<Exception> { cause ->
             call.respond(HttpStatusCode.Companion.InternalServerError, Error(cause.message))
         }
 
