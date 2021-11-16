@@ -9,3 +9,9 @@ fun writeFile(requestFile: PartData.FileItem, filePath: String) {
     requestFile.streamProvider().use { its -> savedFile.outputStream().buffered().use { its.copyTo(it) } }
     requestFile.dispose()
 }
+
+fun deleteFile(filePath: String) {
+    val file = File(filePath)
+
+    file.delete()
+}

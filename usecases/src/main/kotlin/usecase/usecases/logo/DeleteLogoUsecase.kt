@@ -1,5 +1,6 @@
 package usecase.usecases.logo
 
+import domain.LogoNotFoundException
 import domain.entity.ResourceType
 import domain.repository.ResourceRepository
 import usecase.model.DefaultResponse
@@ -11,6 +12,10 @@ class DeleteLogoUsecase (
     private val repository: ResourceRepository
 ) : AuthUsecase<DeleteLogoRequest, DefaultResponse>() {
     override suspend fun executor(request: DeleteLogoRequest): DefaultResponse {
+
+        val logo = repository.findByNameAndType(request.name, ResourceType.LOGO)
+            ?: throw LogoNotFoundException()
+
         suspendedTx {
             repository.deleteByNameAndType(request.name, ResourceType.LOGO)
         }
