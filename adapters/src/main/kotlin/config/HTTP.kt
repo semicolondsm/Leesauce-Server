@@ -6,6 +6,9 @@ import io.ktor.http.*
 import io.ktor.application.*
 
 fun Application.configureHTTP() {
+    install(CORS) {
+        anyHost()
+    }
     install(CachingHeaders) {
         options { outgoingContent ->
             when (outgoingContent.contentType?.withoutParameters()) {
