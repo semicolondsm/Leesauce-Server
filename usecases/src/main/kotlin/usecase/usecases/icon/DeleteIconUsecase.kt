@@ -15,10 +15,10 @@ class DeleteIconUsecase (
 ) : AuthUsecase<DeleteIconRequest, DefaultResponse>() {
     override suspend fun executor(request: DeleteIconRequest): DefaultResponse {
 
-        val icon = repository.findByNameAndType(request.name, ResourceType.ICON)
+        repository.findByNameAndType(request.name, ResourceType.ICON)
             ?: throw IconNotFoundException()
 
-        deleteFile(icon.url)
+        deleteFile("environment.uploadDir/icon/${request.name}")
 
         suspendedTx {
             repository.deleteByNameAndType(request.name, ResourceType.ICON)

@@ -6,6 +6,7 @@ import domain.repository.ResourceRepository
 import usecase.model.DefaultResponse
 import usecase.model.DeleteLogoRequest
 import usecase.usecases.AuthUsecase
+import usecase.usecases.common.deleteFile
 import usecase.usecases.common.suspendedTx
 
 class DeleteLogoUsecase (
@@ -13,8 +14,10 @@ class DeleteLogoUsecase (
 ) : AuthUsecase<DeleteLogoRequest, DefaultResponse>() {
     override suspend fun executor(request: DeleteLogoRequest): DefaultResponse {
 
-        val logo = repository.findByNameAndType(request.name, ResourceType.LOGO)
+        repository.findByNameAndType(request.name, ResourceType.LOGO)
             ?: throw LogoNotFoundException()
+
+        deleteFile("environment.uploadDir/logo/${request.name}")
 
         suspendedTx {
             repository.deleteByNameAndType(request.name, ResourceType.LOGO)
