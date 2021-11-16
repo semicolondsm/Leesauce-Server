@@ -44,7 +44,7 @@ fun Application.configureRouting() {
     }
 
     routing {
-        get("/leesauce") {
+        get("/leesource") {
             val name = call.request.queryParameters["name"]
 
             call.respond(searchUsecase(SearchRequest(name)))
