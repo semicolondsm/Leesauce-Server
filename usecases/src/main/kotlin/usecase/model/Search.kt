@@ -7,7 +7,7 @@ class SearchRequest (
 )
 
 class SearchResponse (
-    val leeSauces: List<LeeSauce>
+    val leeSources: List<LeeSauce>
 ) {
     class LeeSauce (
         val name: String,
